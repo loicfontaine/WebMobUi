@@ -1,4 +1,4 @@
-import { getProducts, getCategory } from "/src/api.js";
+import { getProducts, getProductsDetails } from "/src/api.js";
 
 const productList = document.querySelector(".product-list");
 
@@ -32,4 +32,17 @@ async function renderProductList(products) {
   });
 }
 
-export { renderProductList };
+async function renderPageProduct(id) {
+  const productInfo = await getProductsDetails(id);
+  document.querySelector(
+    "#product-section h4"
+  ).innerText = `Produits > ${productInfo.name}`;
+  document.querySelector(".product-category-link").innerText =
+    productInfo.category.name;
+  document.querySelector(
+    ".product-category-link"
+  ).href = `#categories-${productInfo.category.id}`;
+  document.querySelector("#product-section img").src = productInfo.image_url;
+}
+
+export { renderProductList, renderPageProduct };

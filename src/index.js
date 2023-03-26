@@ -1,6 +1,6 @@
 import "./css/index.css";
 import { domOn, domForEach } from "./lib/domManipulator";
-import { renderProductList } from "./sections/products";
+import { renderProductList, renderPageProduct } from "./sections/products";
 import { renderCategoryProducts } from "./sections/categorie.js";
 
 function toggleSection(section) {
@@ -24,7 +24,8 @@ function displaySection() {
   switch (sectionSplit[0]) {
     case "#products":
       if (sectionSplit[1]) {
-        //renderPageProduct(sectionSplit[1]);
+        toggleSection("#product");
+        renderPageProduct(sectionSplit[1]);
       } else {
         renderProductList();
       }
