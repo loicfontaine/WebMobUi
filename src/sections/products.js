@@ -1,4 +1,5 @@
 import { getProducts, getProductsDetails } from "/src/api.js";
+import { toggleCart, getCart } from "./cart";
 
 const productList = document.querySelector(".product-list");
 
@@ -8,7 +9,6 @@ const productListTemplate = document.querySelector(
 
 async function renderProductList(products) {
   productList.replaceChildren();
-  console.log(products);
   if (!products) {
     products = await getProducts();
   }
@@ -28,6 +28,16 @@ async function renderProductList(products) {
       ".product-list-item-category"
     ).href = `#categories-${product.category.id}`;
 
+    const cartIcon = newProduct.querySelector(
+      ".icon-cart-button .material-icons"
+    );
+    newProduct
+      .querySelector(".icon-button-cart-button")
+      .addEventListener("click", () => {
+        toggleCart(product);
+        // on passe le target du click, à savoir l'icône
+      });
+
     productList.append(newProduct);
   });
 }
@@ -45,4 +55,8 @@ async function renderPageProduct(id) {
   document.querySelector("#product-section img").src = productInfo.image_url;
 }
 
-export { renderProductList, renderPageProduct };
+async function renderCart() {
+  renderProductList(getCart());
+}
+
+export { renderProductList, renderPageProduct, renderCart };

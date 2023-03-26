@@ -3,7 +3,7 @@
   "name": "Zalansol - Unleash the JS",
   "icons": [
     {
-      "src": "/images/logo_zalansol.png",
+      "src": "/src/images/logo_zalansol.png",
       "type": "image/png",
       "sizes": "512x512"
     }

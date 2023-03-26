@@ -1,6 +1,10 @@
 import "./css/index.css";
 import { domOn, domForEach } from "./lib/domManipulator";
-import { renderProductList, renderPageProduct } from "./sections/products";
+import {
+  renderProductList,
+  renderPageProduct,
+  renderCart,
+} from "./sections/products";
 import {
   renderCategoryProducts,
   renderCategory,
@@ -41,7 +45,8 @@ function displaySection() {
       }
       break;
     case "#cart":
-      //renderCart();
+      toggleSection("#products");
+      renderCart();
       break;
     case "#home":
       renderCategory();
@@ -52,3 +57,7 @@ function displaySection() {
 window.addEventListener("hashchange", displaySection);
 
 displaySection();
+
+navigator.serviceWorker.register(
+  new URL("workerCacheFetched.js", import.meta.url)
+);
