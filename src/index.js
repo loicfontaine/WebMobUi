@@ -1,7 +1,10 @@
 import "./css/index.css";
 import { domOn, domForEach } from "./lib/domManipulator";
 import { renderProductList, renderPageProduct } from "./sections/products";
-import { renderCategoryProducts } from "./sections/categorie.js";
+import {
+  renderCategoryProducts,
+  renderCategory,
+} from "./sections/categorie.js";
 
 function toggleSection(section) {
   document.querySelector("section.active")?.classList.remove("active");
@@ -39,6 +42,9 @@ function displaySection() {
       break;
     case "#cart":
       //renderCart();
+      break;
+    case "#home":
+      renderCategory();
       break;
   }
 }

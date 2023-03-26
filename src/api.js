@@ -20,4 +20,8 @@ function getProductsDetails(id) {
   return loadJson(`${BASE_URL}/products/${id}`);
 }
 
-export { getProducts, getCategory, getProductsDetails };
+function getCategoryLabel() {
+  return loadJson(`${BASE_URL}/categories`);
+}
+
+export { getProducts, getCategory, getProductsDetails, getCategoryLabel };
