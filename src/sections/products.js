@@ -12,6 +12,7 @@ async function renderProductList(products) {
   if (!products) {
     products = await getProducts();
   }
+  console.log(products);
 
   products.forEach((product) => {
     const newProduct = productListTemplate.content.cloneNode(true);
@@ -31,12 +32,11 @@ async function renderProductList(products) {
     const cartIcon = newProduct.querySelector(
       ".icon-cart-button .material-icons"
     );
-    newProduct
-      .querySelector(".icon-button-cart-button")
-      .addEventListener("click", () => {
-        toggleCart(product);
-        // on passe le target du click, à savoir l'icône
-      });
+    newProduct.querySelector(".icon-button").addEventListener("click", () => {
+      toggleCart(product);
+      renderCart();
+      // on passe le target du click, à savoir l'icône
+    });
 
     productList.append(newProduct);
   });
